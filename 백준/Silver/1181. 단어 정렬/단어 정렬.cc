@@ -26,14 +26,17 @@ void ListPrint(List* list);
 
 int main(void) {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	List list;
-	ListInit(&list);
+	List* all = new List[50];
+	for (int i = 0; i < 50; i++) {
+		ListInit(&all[i]);
+	}
 	int N; cin >> N;
 	for (int i = 0; i < N; i++) {
 		string str; cin >> str;
-		LInsert(&list, str);
+		int len = str.length();
+		LInsert(&all[len-1], str);
 	}
-	ListPrint(&list);
+	for(int i = 0; i < 50; i++) ListPrint(&all[i]);
 	return 0;
 }
 
