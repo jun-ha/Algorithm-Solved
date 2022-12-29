@@ -12,7 +12,6 @@ using ll = long long;
 
 typedef struct _node {
 	string str;
-	int len;
 	struct _node* next;
 }Node;
 
@@ -46,19 +45,13 @@ void ListInit(List* list) {
 }
 void LInsert(List* list, string str) {
 	Node* newNode = new Node;
-	int len = str.length();
 	newNode->str = str;
-	newNode->len = len;
 	Node* cur = list->head;
 	while (cur->next) {
-		if (len < cur->next->len) break;
-		else if (cur->next->len < len) cur = cur->next;
-		else {
-			int func = strncmp(&str[0], &(cur->next->str[0]), len);
-			if (func < 0) break;
-			else if (func > 0) cur = cur->next;
-			else return;
-		}
+		int func = strcmp(&str[0], &(cur->next->str[0]));
+		if (func < 0) break;
+		else if (func > 0) cur = cur->next;
+		else return;
 	}
 	newNode->next = cur->next;
 	cur->next = newNode;
