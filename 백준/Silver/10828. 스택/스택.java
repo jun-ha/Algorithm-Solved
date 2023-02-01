@@ -1,11 +1,15 @@
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.Stack;;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
 		int N = Integer.parseInt(br.readLine());
 		Stack<Integer> s = new Stack<>();
 		for(int i = 0; i < N; i++) {
@@ -17,25 +21,27 @@ public class Main {
 				s.push(num);
 				break;
 			case "pop":
-				if(s.empty()) System.out.println("-1");
+				if(s.empty()) bw.write("-1\n");
 				else {
-					
-					System.out.println(Integer.toString(s.peek()));
+					bw.write(Integer.toString(s.peek())+"\n");
 					s.pop();
 				}
 				break;
 			case "size":
-				System.out.println(Integer.toString(s.size()));
+				bw.write(Integer.toString(s.size())+"\n");
 				break;
 			case "empty":
-				if(s.empty()) System.out.println("1");
-				else System.out.println("0");
+				if(s.empty()) bw.write("1\n");
+				else bw.write("0\n");
 				break;
 			case "top":
-				if(s.empty()) System.out.println("-1");
-				else System.out.println(Integer.toString(s.peek()));
+				if(s.empty()) bw.write("-1\n");
+				else bw.write(Integer.toString(s.peek())+"\n");
 				break;
 			}
 		}
+		bw.flush();
+		br.close();
+		bw.close();
 	}
 }
