@@ -1,76 +1,51 @@
 #include <iostream>
-#include <stdlib.h>
 #include <algorithm>
+#include <vector>
 #include <string>
-#include <math.h>
-#include <limits.h>
+#include <cmath>
+#include <stack>
+#include <map>
+#include <set>
+#include <queue>
+#define ENDL '\n'
 
 using namespace std;
 using ll = long long;
-void divide(int**, int, int, int);
-int white = 0, blue = 0;
 
-int main(void)
-{
+void seperatePaper(vector<vector<bool>>& paper, int srow, int scol, int n, int& white, int& blue);
+
+int main(void) {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	int N, k; 
-	cin >> N;
-	int** arr = (int**)malloc(sizeof(int*) * N);
-	for (int i = 0; i < N; i++)
-	{
-		arr[i] = (int*)malloc(sizeof(int) * N);
-		for (int j = 0; j < N; j++)
-		{
-			cin >> arr[i][j];
+	int N; cin >> N;
+	vector<vector<bool>>paper(N);
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			int num; cin >> num;
+			if (num) paper[i].push_back(true);
+			else paper[i].push_back(false);
 		}
 	}
-	divide(arr, 0, 0, N);
-	cout << white << "\n" << blue;
-	for (int i = 0; i < N; i++)
-	{
-		free(arr[i]);
-	}
-	free(arr);
-
+	int white = 0, blue = 0;
+	seperatePaper(paper, 0, 0, N, white, blue);
+	cout << white << ENDL << blue;
 	return 0;
 }
-void divide(int **arr, int start_row, int start_col, int end_index)
-{
-	int whiteOrBlue = arr[start_row][start_col];
-	bool flag = false;
-	for (int i = start_row; i < start_row + end_index; i++)
-	{
-		for (int j = start_col; j < start_col + end_index; j++)
-		{
-			if (arr[i][j] != whiteOrBlue)
-			{
-				flag = true;
-				break;
+void seperatePaper(vector<vector<bool>>& paper, int srow, int scol, int n, int& white, int& blue){
+	bool sameCheck = paper[srow][scol];
+	for (int i = srow; i < srow+n; i++) {
+		for (int j = scol; j < scol + n; j++) {
+			if (paper[i][j] != sameCheck) {
+				seperatePaper(paper, srow, scol, n / 2, white, blue);
+				seperatePaper(paper, srow+n/2, scol, n / 2, white, blue);
+				seperatePaper(paper, srow, scol+n/2, n / 2, white, blue);
+				seperatePaper(paper, srow+n/2, scol+n/2, n / 2, white, blue);
+				return;
 			}
 		}
-		if (flag)
-		{
-			break;
-		}
 	}
-	if (flag)
-	{
-		end_index /= 2;
-		divide(arr, start_row, start_col, end_index);
-		divide(arr, start_row, start_col + end_index, end_index);
-		divide(arr, start_row + end_index, start_col, end_index);
-		divide(arr, start_row + end_index, start_col + end_index, end_index);
+	if (sameCheck) {
+		blue++;
+		return;
 	}
-	else
-	{
-		if (whiteOrBlue)
-		{
-			blue++;
-		}
-		else
-		{
-			white++;
-		}
-	}
-	
+	white++;
 }
