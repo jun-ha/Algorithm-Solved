@@ -1,17 +1,11 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
 #include <string>
-#include <cmath>
-#include <stack>
 #include <queue>
-#include <tuple>
-#include <map>
-#include <set>
+
 #define ENDL '\n'
 
 using namespace std;
-using ll = long long;
 int V, E;
 #define INF 999999999
 
