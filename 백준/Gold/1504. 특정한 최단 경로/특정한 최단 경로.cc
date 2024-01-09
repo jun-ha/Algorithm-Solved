@@ -1,13 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
 #include <queue>
-#include <tuple>
-#include <map>
-#include <set>
 #define ENDL '\n'
 #define INF 99999999
 
@@ -15,15 +8,15 @@ using namespace std;
 using ll = long long;
 
 int N, E;
-int mustV1, mustV2;
 
-void Dijkstra(vector<vector<pair<int, int>>>& pathTable, vector<bool>& visited, vector<int>& shortestTable, int start);
+void Dijkstra(vector<vector<pair<int, int>>>& pathTable, vector<int>& shortestTable, int start);
 
 int main(void) {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> N >> E;
 	int start = 1;
 	int dest = N;
+	int mustV1, mustV2;
 	vector<vector<pair<int, int>>>pathTable(N + 1);
 	vector<int>shortestTableOfStart(N + 1, INF);
 	vector<int>shortestTableOfMustV1(N + 1, INF);
@@ -39,12 +32,9 @@ int main(void) {
 	shortestTableOfStart[start] = 0;
 	shortestTableOfMustV1[mustV1] = 0;
 	shortestTableOfMustV2[mustV2] = 0;
-	vector<bool>visitedStart(N + 1, false);
-	vector<bool>visitedMustV1(N + 1, false);
-	vector<bool>visitedMustV2(N + 1, false);
-	Dijkstra(pathTable, visitedStart, shortestTableOfStart, start);
-	Dijkstra(pathTable, visitedMustV1, shortestTableOfMustV1, mustV1);
-	Dijkstra(pathTable, visitedMustV2, shortestTableOfMustV2, mustV2);
+	Dijkstra(pathTable, shortestTableOfStart, start);
+	Dijkstra(pathTable, shortestTableOfMustV1, mustV1);
+	Dijkstra(pathTable, shortestTableOfMustV2, mustV2);
 
 	int path1 = shortestTableOfStart[mustV1] + shortestTableOfMustV1[mustV2] + shortestTableOfMustV2[dest];
 	int path2 = shortestTableOfStart[mustV2] + shortestTableOfMustV2[mustV1] + shortestTableOfMustV1[dest];
@@ -54,8 +44,9 @@ int main(void) {
 	
 	return 0;
 }
-void Dijkstra(vector<vector<pair<int, int>>>& pathTable, vector<bool>&visited, vector<int>& shortestTable, int start) {
+void Dijkstra(vector<vector<pair<int, int>>>& pathTable, vector<int>& shortestTable, int start) {
 	priority_queue<pair<int, int>>pq;
+	vector<bool> visited(N + 1, false);
 	pq.push(make_pair(0, start));
 	while (!pq.empty()) {
 		int nextIDX = pq.top().second;
