@@ -29,9 +29,7 @@ int main(void) {
 		pathTable[vertex2].push_back(make_pair(vertex1, weight));
 	}
 	cin >> mustV1 >> mustV2;
-	shortestTableOfStart[start] = 0;
-	shortestTableOfMustV1[mustV1] = 0;
-	shortestTableOfMustV2[mustV2] = 0;
+
 	Dijkstra(pathTable, shortestTableOfStart, start);
 	Dijkstra(pathTable, shortestTableOfMustV1, mustV1);
 	Dijkstra(pathTable, shortestTableOfMustV2, mustV2);
@@ -39,6 +37,7 @@ int main(void) {
 	int path1 = shortestTableOfStart[mustV1] + shortestTableOfMustV1[mustV2] + shortestTableOfMustV2[dest];
 	int path2 = shortestTableOfStart[mustV2] + shortestTableOfMustV2[mustV1] + shortestTableOfMustV1[dest];
 	int shortestToDest = min(path1, path2);
+	
 	if (shortestToDest >= INF) cout << -1;
 	else cout << shortestToDest;
 	
@@ -48,6 +47,7 @@ void Dijkstra(vector<vector<pair<int, int>>>& pathTable, vector<int>& shortestTa
 	priority_queue<pair<int, int>>pq;
 	vector<bool> visited(N + 1, false);
 	pq.push(make_pair(0, start));
+	shortestTable[start] = 0;
 	while (!pq.empty()) {
 		int nextIDX = pq.top().second;
 		int nextIDXWeight = -pq.top().first;
