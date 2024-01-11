@@ -1,19 +1,12 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
 #include <queue>
-#include <tuple>
-#include <map>
-#include <set>
 #define ENDL '\n'
 
 #define INF 9999999
 
 using namespace std;
-using ll = long long;
 
 void Dijkstra(vector<vector<pair<int, int>>>& pathTable, vector<int>& shortestPath, int start);
 
