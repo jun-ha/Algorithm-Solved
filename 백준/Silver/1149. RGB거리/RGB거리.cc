@@ -22,6 +22,6 @@ int main(void) {
 		accumulatedSum[1] = tmpG;
 		accumulatedSum[2] = tmpB;
 	}
-	cout << min(accumulatedSum[0], min(accumulatedSum[1], accumulatedSum[2]));
+	cout << min({accumulatedSum[0], accumulatedSum[1], accumulatedSum[2]});
 	return 0;
 }
