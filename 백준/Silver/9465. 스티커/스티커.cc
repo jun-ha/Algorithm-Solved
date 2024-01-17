@@ -1,13 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
-#include <queue>
-#include <tuple>
-#include <map>
-#include <set>
+
 #define ENDL '\n'
 
 using namespace std;
@@ -30,9 +24,9 @@ int main(void) {
 		}
 
 		vector<int>accumulatedSum(n, 0);
-		accumulatedSum[0] = up[0];
-		accumulatedSum[1] = down[0];
-		accumulatedSum[2] = 0;
+		accumulatedSum[0] = up[0]; //choose up
+		accumulatedSum[1] = down[0]; //choose down
+		accumulatedSum[2] = 0; //choose nothing
 		for (int i = 1; i < n; i++) {
 			int tmpUp, tmpDown, tmpX;
 			tmpUp = max(accumulatedSum[1], accumulatedSum[2]) + up[i];
