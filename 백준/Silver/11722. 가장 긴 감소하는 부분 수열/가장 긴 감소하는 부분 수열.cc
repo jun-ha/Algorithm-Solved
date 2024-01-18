@@ -23,9 +23,7 @@ int main(void) {
 				maxSequenceValue = accumulatedSequenceSum[j];
 			}
 		}
-		if (accumulatedSequenceSum[nums[i]] < maxSequenceValue + 1) {
-			accumulatedSequenceSum[nums[i]] = maxSequenceValue + 1;
-		}
+		accumulatedSequenceSum[nums[i]] = maxSequenceValue + 1;
 	}
 
 	int maxSequenceValue = 0;
