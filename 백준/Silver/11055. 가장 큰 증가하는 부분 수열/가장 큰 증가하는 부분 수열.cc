@@ -1,13 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
-#include <queue>
-#include <tuple>
-#include <map>
-#include <set>
+
 #define ENDL '\n'
 
 using namespace std;
@@ -21,12 +14,12 @@ int main(void) {
 	for (int i = 0; i < n; i++) {
 		cin >> nums[i];
 	}
-	vector<int>accumulatedSum(1001, -1);
+	vector<int>accumulatedSum(1001, -1); //인덱스는 최댓값, 값은 최대누적합
 	accumulatedSum[nums[0]] = nums[0];
 	accumulatedSum[0] = 0;
 	for (int i = 1; i < n; i++) {
-		//선택 안한 미래는 걍냅두고
-		//선택한다면..
+		//현재 수를 선택한다면
+		//최댓값이 현재값보다 작은 경우들 중 가장 누적합이 큰 경우를 찾는다.
 		int tmpMax = -1;
 		for (int j = nums[i] - 1; j >= 0; j--) {
 			if (accumulatedSum[j] > tmpMax) {
