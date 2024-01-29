@@ -1,13 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
 #include <queue>
-#include <tuple>
-#include <map>
-#include <set>
 #define ENDL '\n'
 
 using namespace std;
@@ -29,10 +22,11 @@ enum Direction {
 int boardSize, numOfApple, numOfChangeDir;
 int elapsedTime = 0;
 int snakeDirection = RIGHT;
-int snakeHeadRow = 1, snakeHeadCol = 1, snakeSize = 1;
+int snakeHeadRow = 1, snakeHeadCol = 1;
 int nextHeadRow, nextHeadCol;
 queue<pair<int, int>> SnakeRouteInfo;
 queue<pair<int, char>> DirectionChangeInfo;
+
 void GamePlay(vector<vector<int>>&Board);
 
 int main(void) {
@@ -108,15 +102,14 @@ bool move(vector<vector<int>>& Board) {
 		SnakeRouteInfo.push({ snakeHeadRow, snakeHeadCol });
 		snakeHeadRow = nextHeadRow;
 		snakeHeadCol = nextHeadCol;
-		if (Board[snakeHeadRow][snakeHeadCol] == APPLE) {
-			snakeSize++;
-		}
-		else {
+
+		if (Board[snakeHeadRow][snakeHeadCol] != APPLE) { //if APPLE - DO NOTHING
 			int snakeTailRow = SnakeRouteInfo.front().first;
 			int snakeTailCol = SnakeRouteInfo.front().second;
 			Board[snakeTailRow][snakeTailCol] = EMPTY;
 			SnakeRouteInfo.pop();
 		}
+		
 		Board[snakeHeadRow][snakeHeadCol] = SNAKE;
 		return true;
 	}
@@ -130,5 +123,5 @@ void GamePlay(vector<vector<int>>& Board) {
 			DirectionChangeInfo.pop();
 		}
 	}
-	cout << elapsedTime+1;
+	cout << elapsedTime + 1;
 }
