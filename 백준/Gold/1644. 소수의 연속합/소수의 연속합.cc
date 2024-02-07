@@ -12,6 +12,7 @@ int main(void) {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	int N; cin >> N;
 	vector<int>primeNumbers;
+	primeNumbers.reserve(N);
 	primeNumbers.push_back(2);
 	for (int num = 3; num <= N; num+=2) {
 		if (isPrimeNumber(num)) {
