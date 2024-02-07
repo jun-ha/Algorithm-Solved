@@ -1,13 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
-#include <queue>
-#include <tuple>
-#include <map>
-#include <set>
+
 #define ENDL '\n'
 
 using namespace std;
@@ -20,7 +13,7 @@ int main(void) {
 	int N; cin >> N;
 	vector<int>primeNumbers;
 	primeNumbers.push_back(2);
-	for (int num = 3; num <= 4000000; num+=2) {
+	for (int num = 3; num <= N; num+=2) {
 		if (isPrimeNumber(num)) {
 			primeNumbers.push_back(num);
 		}
