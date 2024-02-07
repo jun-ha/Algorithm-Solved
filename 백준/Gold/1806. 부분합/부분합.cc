@@ -1,13 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
-#include <queue>
-#include <tuple>
-#include <map>
-#include <set>
+
 #define ENDL '\n'
 
 using namespace std;
@@ -18,10 +11,10 @@ int main(void) {
 	int N, S;
 	cin >> N >> S;
 	vector<int>nums(N);
-	ll sum = 0;
 	for (int i = 0; i < N; i++) {
 		cin >> nums[i];
 	}
+	int sum = 0;
 	int front = 0, back = 0;
 	int minCount = 999999999;
 	while (back != N) {
@@ -37,7 +30,5 @@ int main(void) {
 	if (minCount == 999999999) cout << 0;
 	else cout << minCount;
 
-	
-	
 	return 0;
 }
