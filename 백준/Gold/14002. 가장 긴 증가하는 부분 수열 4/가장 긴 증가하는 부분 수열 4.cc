@@ -1,13 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
-#include <queue>
-#include <tuple>
-#include <map>
-#include <set>
 #define ENDL '\n'
 
 using namespace std;
@@ -18,6 +11,7 @@ int main(void) {
 	int N; cin >> N;
 	vector<int>nums(N, 0);
 	vector<int>maxSequence(N, 0);
+	int maxSequenceValue = 0;
 	for (int i = 0; i < N; i++) {
 		cin >> nums[i];
 	}
@@ -30,26 +24,19 @@ int main(void) {
 			}
 		}
 		maxSequence[i] = tmpMax + 1;
+		if (maxSequence[i] > maxSequenceValue) maxSequenceValue = maxSequence[i];
 	}
-	int maxValue = 0;
 	vector<int>path;
-	for (auto x : maxSequence) {
-		if (x > maxValue) maxValue = x;
-	}
-	int tmpMax = maxValue;
+	int tmpMax = maxSequenceValue;
 	for (int i = N - 1; i >= 0; i--) {
 		if (maxSequence[i] == tmpMax) {
 			path.push_back(nums[i]);
 			tmpMax--;
 		}
 	}
-	reverse(path.begin(), path.end());
-	cout << maxValue << ENDL;
-	for (auto x : path) {
-		cout << x << " ";
+	cout << maxSequenceValue << ENDL;
+	for (int i = path.size() - 1; i >= 0; i--) {
+		cout << path[i] << " ";
 	}
-	
-
-
 	return 0;
 }
