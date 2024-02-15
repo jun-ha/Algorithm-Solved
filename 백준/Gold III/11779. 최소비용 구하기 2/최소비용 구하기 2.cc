@@ -1,13 +1,7 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
 #include <stack>
 #include <queue>
-#include <tuple>
-#include <map>
-#include <set>
 #define ENDL '\n'
 #define INF 999999999
 
@@ -55,10 +49,10 @@ void solution() {
 		}
 	}
 	cout << path[destination] << ENDL;
-	int tmpIdx = destination;
 	stack<int>route;
 	route.push(destination);
 
+	int tmpIdx = destination;
 	while (tmpIdx != start) {
 		route.push(beforeCityNum[tmpIdx]);
 		tmpIdx = beforeCityNum[tmpIdx];
