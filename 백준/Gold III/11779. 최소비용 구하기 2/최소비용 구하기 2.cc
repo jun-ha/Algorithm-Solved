@@ -15,7 +15,7 @@ using namespace std;
 using ll = long long;
 int numOfCity, numOfBus, start, destination;
 vector<vector<pair<int, int>>>busRoutes;
-vector<ll>path;
+vector<int>path;
 
 void solution();
 
@@ -34,19 +34,19 @@ int main(void) {
 	return 0;
 }
 void solution() {
-	priority_queue<pair<ll, int>>pq;
+	priority_queue<pair<int, int>>pq;
 	vector<bool>visited(numOfCity + 1, false);
 	vector<int>beforeCityNum(numOfCity + 1, -1);
 	pq.push({0, start});
 	while (!pq.empty()) {
-		ll costOfwayPoint = -pq.top().first;
+		int costOfwayPoint = -pq.top().first;
 		int wayPoint = pq.top().second;
 		pq.pop();
 		if (visited[wayPoint]) continue;
 		visited[wayPoint] = true;
 		for (auto x : busRoutes[wayPoint]) {
 			int destination = x.first;
-			ll costOfDestination = x.second;
+			int costOfDestination = x.second;
 			if (costOfwayPoint + costOfDestination < path[destination]) {
 				path[destination] = costOfwayPoint + costOfDestination;
 				pq.push({ -(costOfwayPoint + costOfDestination), destination });
@@ -58,10 +58,7 @@ void solution() {
 	int tmpIdx = destination;
 	stack<int>route;
 	route.push(destination);
-	/*while (beforeCityNum[tmpIdx] != -1) {
-		route.push(beforeCityNum[tmpIdx]);
-		tmpIdx = beforeCityNum[tmpIdx];
-	}*/
+
 	while (tmpIdx != start) {
 		route.push(beforeCityNum[tmpIdx]);
 		tmpIdx = beforeCityNum[tmpIdx];
