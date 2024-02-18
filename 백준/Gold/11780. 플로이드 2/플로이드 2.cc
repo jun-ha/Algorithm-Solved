@@ -1,28 +1,17 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
-#include <queue>
-#include <tuple>
-#include <map>
-#include <set>
 #define ENDL '\n'
 #define INF 999999999
 
 using namespace std;
 using ll = long long;
 
-int numOfCity, numOfBus;
-vector<vector<int>>busRoutes;
-vector<vector<vector<int>>>path;
-
 int main(void) {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	int numOfCity, numOfBus;
 	cin >> numOfCity >> numOfBus;
-	busRoutes.resize(numOfCity + 1, vector<int>(numOfCity + 1, INF));
-	path.resize(numOfCity + 1, vector<vector<int>>(numOfCity + 1, vector<int>()));
+	vector<vector<int>>busRoutes(numOfCity + 1, vector<int>(numOfCity + 1, INF));
+	vector<vector<vector<int>>>path(numOfCity + 1, vector<vector<int>>(numOfCity + 1, vector<int>()));
 	for (int i = 0; i < numOfBus; i++) {
 		int from, to, cost;
 		cin >> from >> to >> cost;
