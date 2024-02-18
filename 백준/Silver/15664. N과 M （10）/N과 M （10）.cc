@@ -1,13 +1,8 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
 #include <queue>
-#include <tuple>
-#include <map>
-#include <set>
+
 #define ENDL '\n'
 
 using namespace std;
@@ -15,6 +10,7 @@ using ll = long long;
 
 int N, M;
 queue<vector<int>>q;
+vector<int>nums;
 vector<pair<int, int>>sortedNums;
 
 void rec(int idx, int remaining, vector<int>tmpVector);
@@ -22,9 +18,9 @@ void rec(int idx, int remaining, vector<int>tmpVector);
 int main(void) {
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	cin >> N >> M;
-	vector<int>nums(N);
 	for (int i = 0; i < N; i++) {
-		cin >> nums[i];
+		int num; cin >> num;
+		nums.push_back(num);
 	}
 	sort(nums.begin(), nums.end());
 	int beforeNum = nums[0];
