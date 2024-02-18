@@ -34,10 +34,7 @@ int main(void) {
 				if (wayPointCost < directCost) {
 					busRoutes[from][to] = wayPointCost;
 					vector<int>newPath(path[from][wayPoint]);
-					int len = path[wayPoint][to].size();
-					for (int i = 1; i < len; i++) {
-						newPath.push_back(path[wayPoint][to][i]);
-					}
+					newPath.insert(newPath.end(), path[wayPoint][to].begin() + 1, path[wayPoint][to].end());
 					path[from][to] = newPath;
 				}
 			}
