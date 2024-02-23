@@ -1,20 +1,18 @@
-#include <bits/stdc++.h>
+
+#include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int solution(vector<int> citations) {
-    sort(citations.begin(), citations.end());
-    int maxH = citations.back();
-    int idx = citations.size() - 1;
-    int overCount = 1;
-    while(maxH){
-        if(citations[idx - 1] == maxH) {
-            idx--;
-            overCount++;
-            continue;
+    sort(citations.begin(), citations.end(), greater<int>());
+
+    for (int i = 0; i < citations.size(); ++i) {
+        if (citations[i] < i + 1) {
+            return i;
         }
-        if(overCount >= maxH) return maxH;
-        maxH--;
     }
-    
+
+    return citations.size();
 }
