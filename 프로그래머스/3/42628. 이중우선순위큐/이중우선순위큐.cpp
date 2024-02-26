@@ -25,9 +25,9 @@ vector<int> solution(vector<string> operations) {
                 s.erase(s.begin());    
             }
             else{
-                auto iter = s.end();
-                iter--;
-                s.erase(iter);    
+                //auto iter = s.end();
+                //iter--;
+                s.erase(--s.end());    
             }
         }
     }
