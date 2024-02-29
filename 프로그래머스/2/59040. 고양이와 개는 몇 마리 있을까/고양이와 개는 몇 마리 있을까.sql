@@ -1,0 +1,13 @@
+SELECT
+    ANIMAL_TYPE,
+    COUNT(*) AS 'count'
+FROM
+    ANIMAL_INS
+GROUP BY
+    ANIMAL_TYPE
+ORDER BY
+    CASE 
+        WHEN ANIMAL_TYPE = 'Cat' THEN 1
+        WHEN ANIMAL_TYPE = 'Cat' THEN 2
+        ELSE 3
+    END;
