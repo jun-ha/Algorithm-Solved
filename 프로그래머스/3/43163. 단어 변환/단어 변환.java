@@ -1,16 +1,13 @@
 import java.util.*;
+import java.util.stream.*;
 
 class Solution {
     
     boolean isOneWordDiff(String a, String b){
-        boolean first = true;
-        for(int i = 0; i < a.length(); i++){
-            if(a.charAt(i) != b.charAt(i)) {
-                if(first) first = false;
-                else return false;
-            }
-        }
-        return first? false : true;
+        return 
+            IntStream.range(0, a.length())
+            .filter(i -> a.charAt(i) != b.charAt(i))
+            .count() == 1 ? true : false;
     }
     
     class Data{
