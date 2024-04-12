@@ -5,6 +5,6 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
         int n = sc.nextInt();
-        System.out.println(String.valueOf(str).repeat(n));
+        System.out.println(str.repeat(n));
     }
 }
