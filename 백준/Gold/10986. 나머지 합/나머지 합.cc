@@ -1,16 +1,5 @@
 #include <iostream>
-#include <algorithm>
-#include <climits>
 #include <vector>
-#include <string>
-#include <cmath>
-#include <stack>
-#include <queue>
-#include <tuple>
-#include <map>
-#include <unordered_map>
-#include <set>
-#include <unordered_set>
 #define ENDL '\n'
 
 using namespace std;
