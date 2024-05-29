@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stack>
+
 #define ENDL '\n'
 
 using namespace std;
@@ -16,34 +18,26 @@ int main(void) {
 		cntVec[num]++;
 	}
 
-	vector<pair<int, int>>answerVec(N, { 0,0 });
-	for (int i = answerVec.size() - 1; i >= 0; i--) {
-		int tmpCnt = cntVec[nums[i]];
-		int idx = i + 1;
-		bool find = false;
-		while (idx < answerVec.size()) {
-			if (cntVec[nums[idx]] < tmpCnt) {
-				idx = answerVec[idx].second;
-				continue;
-			}
+	stack<int>s;
+	stack<int>answer;
 
-			if (cntVec[nums[idx]] > tmpCnt) {
-				answerVec[i] = {nums[idx], idx};
-			}
-			else {
-				answerVec[i] = answerVec[idx];
-			}
-			find = true;
-			break;
+	for (int i = nums.size() - 1; i >= 0; i--) {
+
+		while (!s.empty()) {
+			if (cntVec[s.top()] <= cntVec[nums[i]]) s.pop();
+			else break;
 		}
 
-		if (!find) answerVec[i] = { -1, -1 };
+		if (!s.empty()) answer.push(s.top());
+		else answer.push(-1);
+
+		s.push(nums[i]);
 	}
 
-	for (pair<int, int>p : answerVec) {
-		cout << p.first << " ";
+	while (!answer.empty()) {
+		cout << answer.top() << " ";
+		answer.pop();
 	}
-
 
 	return 0;
 }
