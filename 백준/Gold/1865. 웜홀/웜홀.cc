@@ -14,7 +14,9 @@ int main(void) {
 	while (T--) {
 		int numOfNode, numOfRoad, numOfWormhole;
 		cin >> numOfNode >> numOfRoad >> numOfWormhole;
-		vector<vector<int>>routes(numOfNode + 1, vector<int>(numOfNode + 1, INT_MAX/2-1));
+		//vector<vector<int>>routes(numOfNode + 1, vector<int>(numOfNode + 1, INT_MAX/2-1));
+		int routes[501][501];
+		fill(routes[0], routes[501], INT_MAX / 2 - 1);
 
 		for (int i = 0; i < numOfRoad; i++) {
 			int node1, node2, cost;
