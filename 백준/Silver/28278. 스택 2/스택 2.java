@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     private static Stack<Integer> stack = new Stack<>();
-    //private static StringBuilder sb = new StringBuilder();
+    private static StringBuilder sb = new StringBuilder();
 
     private static void handleCommand(String commandLine){
         int command = commandLine.charAt(0) - '0';
@@ -13,33 +13,33 @@ public class Main {
                 break;
             case 2:
                 if(stack.isEmpty()){
-                    System.out.println("-1");
-                    //sb.append(-1).append('\n');
+                    //System.out.println("-1");
+                    sb.append(-1).append('\n');
                 } else {
-                    System.out.println(stack.pop());
-                    //sb.append(stack.pop()).append('\n');
+                    //System.out.println(stack.pop());
+                    sb.append(stack.pop()).append('\n');
                 }
                 break;
             case 3:
-                System.out.println(stack.size());
-                //sb.append(stack.size()).append('\n');
+                //System.out.println(stack.size());
+                sb.append(stack.size()).append('\n');
                 break;
             case 4:
                 if(stack.isEmpty()){
-                    System.out.println(1);
-                    //sb.append(1).append('\n');
+                    //System.out.println(1);
+                    sb.append(1).append('\n');
                 } else {
-                    System.out.println(0);
-                    //sb.append(0).append('\n');
+                    //System.out.println(0);
+                    sb.append(0).append('\n');
                 }
                 break;
             case 5:
                 if(stack.isEmpty()){
-                    System.out.println(-1);
-                    //sb.append(-1).append('\n');
+                    //System.out.println(-1);
+                    sb.append(-1).append('\n');
                 } else {
-                    System.out.println(stack.peek());
-                    //sb.append(stack.peek()).append('\n');
+                    //System.out.println(stack.peek());
+                    sb.append(stack.peek()).append('\n');
                 }
                 break;
             default:
@@ -55,5 +55,7 @@ public class Main {
             String commandLine = br.readLine();
             handleCommand(commandLine);
         }
+
+        System.out.println(sb);
     }
 }
