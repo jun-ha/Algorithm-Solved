@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    private static Stack<Integer> stack = new Stack<>();
+    private static Deque<Integer> stack = new ArrayDeque<>();
     private static StringBuilder sb = new StringBuilder();
 
     private static void handleCommand(String commandLine){
