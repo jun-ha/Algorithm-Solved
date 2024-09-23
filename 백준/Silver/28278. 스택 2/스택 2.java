@@ -9,41 +9,15 @@ public class Main {
         int command = commandLine.charAt(0) - '0';
         switch(command){
             case 1:
-                stack.push(Integer.parseInt(commandLine.substring(2)));
-                break;
+                stack.push(Integer.parseInt(commandLine.substring(2))); return;
             case 2:
-                if(stack.isEmpty()){
-                    //System.out.println("-1");
-                    sb.append(-1).append('\n');
-                } else {
-                    //System.out.println(stack.pop());
-                    sb.append(stack.pop()).append('\n');
-                }
-                break;
+                sb.append(stack.isEmpty()? -1 : stack.pop()).append('\n'); return;
             case 3:
-                //System.out.println(stack.size());
-                sb.append(stack.size()).append('\n');
-                break;
+                sb.append(stack.size()).append('\n'); return;
             case 4:
-                if(stack.isEmpty()){
-                    //System.out.println(1);
-                    sb.append(1).append('\n');
-                } else {
-                    //System.out.println(0);
-                    sb.append(0).append('\n');
-                }
-                break;
+                sb.append(stack.isEmpty() ? 1 : 0).append('\n'); return;
             case 5:
-                if(stack.isEmpty()){
-                    //System.out.println(-1);
-                    sb.append(-1).append('\n');
-                } else {
-                    //System.out.println(stack.peek());
-                    sb.append(stack.peek()).append('\n');
-                }
-                break;
-            default:
-                break;
+                sb.append(stack.isEmpty() ? -1 : stack.peek()).append('\n'); return;
         }
     }
 
