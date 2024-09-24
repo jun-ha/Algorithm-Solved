@@ -25,8 +25,7 @@ public class Main {
             coordinates[i] =  new Coordinate(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
         }
 
-        Arrays.sort(coordinates, (c1, c2) -> c1.y < c2.y ? -1 : (c1.y == c2.y ? (c1.x < c2.x) ? -1 : 1 : 1));
-
+        Arrays.sort(coordinates, (c1, c2) -> c1.y == c2.y ? Integer.compare(c1.x, c2.x) : Integer.compare(c1.y, c2.y));
         Arrays.stream(coordinates).forEach(c -> sb.append(c.x).append(" ").append(c.y).append('\n'));
 
         System.out.println(sb);
