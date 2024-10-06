@@ -15,7 +15,6 @@ public class Main {
         }
     }
 
-
     static class Board {
         int size;
         Block[][] arr;
@@ -79,14 +78,9 @@ public class Main {
             }
 
             for(int i = 0; i < size; i++) {
-                //System.out.println("Extracted Line");
-                //printLine(extractLine(startRow + dStartRow * i, startCol + dStartCol * i, dRow, dCol));
                 Block[] newLine = moveLine(extractLine(startRow + dStartRow * i, startCol + dStartCol * i, dRow, dCol));
 
-                //System.out.println("moved Line");
-                //printLine(newLine);
                 exchangeLine(board.arr, newLine, startRow + dStartRow * i, startCol + dStartCol * i, dRow, dCol);
-                //board.printBoard();
             }
 
             return board;
@@ -145,41 +139,13 @@ public class Main {
 
             return newLine;
         }
-
-        public void printBoard() {
-            for(int i = 0; i < size; i++) {
-                for(int j = 0; j < size; j++) {
-                    if(arr[i][j] == null) {
-                        System.out.print("0 ");
-                    } else {
-                        System.out.print(arr[i][j].value + " ");
-                    }
-                }
-                System.out.println();
-            }
-        }
-
-        public void printLine(Block[] line) {
-            for(int i = 0; i < size; i++) {
-                if(line[i] == null) {
-                    System.out.print("0 ");
-                } else{
-                    System.out.print(line[i].value + " ");
-                }
-            }
-            System.out.println();
-            System.out.println();
-        }
-
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int boardSize = Integer.parseInt(br.readLine());
 
-        Board board = new Board();
-        board.size = boardSize;
-        board.arr = new Block[boardSize][boardSize];
+        Board board = new Board(boardSize);
 
         for(int i = 0; i < boardSize; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -198,8 +164,6 @@ public class Main {
         Queue<Board> queue = new ArrayDeque<>(1024);
         queue.add(board);
 
-        //board.move(Direction.DOWN).printBoard();
-
         for(int i = 0; i < 5; i++) {
             int count = queue.size();
             for(int c = 0; c < count; c++) {
@@ -217,6 +181,5 @@ public class Main {
         }
 
         System.out.println(maxValue);
-
     }
 }
