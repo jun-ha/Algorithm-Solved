@@ -18,7 +18,6 @@ class Solution {
             
             return a[i] > b[i]? a : b;
         }
-        
         return a;
     }
     
@@ -74,8 +73,7 @@ class Solution {
         dfs(0);
         
         if(answer == null) {
-            answer = new int[1];
-            answer[0] = -1;
+            answer = new int[]{-1};
         }
         
         return answer;
