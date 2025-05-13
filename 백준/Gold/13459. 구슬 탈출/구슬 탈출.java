@@ -7,14 +7,23 @@ import java.util.StringTokenizer;
 
 public class Main {
     static char[][] board;
-    static int boardRow, boardCol;
-    static int[] initRed = new int[2];
-    static int[] initBlue = new int[2];
     static int[] IGNORE_POS = new int[]{-1, -1};
 
     //up, down, left, right
     static int[] dRow = {-1, 1, 0, 0};
     static int[] dCol = {0, 0, -1, 1};
+
+    static class MoveResult {
+        int row;
+        int col;
+        boolean metHole; //구멍에 도달했는지 여부
+
+        MoveResult(int row, int col, boolean metHole) {
+            this.row = row;
+            this.col = col;
+            this.metHole = metHole;
+        }
+    }
 
     static boolean isRedMoveFirst(int[] redPos, int[] bluePos, int move) {
         int redRow = redPos[0];
@@ -36,19 +45,6 @@ public class Main {
     static boolean isNothing(int r, int c) {
         return board[r][c] == '.';
     }
-
-    static class MoveResult {
-        int nr;
-        int nc;
-        boolean metHole;
-
-        MoveResult(int nr, int nc, boolean metHole) {
-            this.nr = nr;
-            this.nc = nc;
-            this.metHole = metHole;
-        }
-    }
-
     static boolean isSamePos(int r, int c, int rr, int cc) {
         return r == rr && c == cc;
     }
@@ -77,7 +73,7 @@ public class Main {
         }
     }
 
-    static void solution() {
+    static void solution(int[] initRed, int[] initBlue) {
         Queue<int[]> q = new ArrayDeque<>();
 
         //공의 위치 정보, 현재 시도 횟수(최대 10), 이전 움직임 정보(중복 방지)
@@ -98,12 +94,14 @@ public class Main {
 
                 MoveResult redMove;
                 MoveResult blueMove;
+                // 1. 먼저 움직이는 공은 조건없이 움직인다.
+                // 2. 나중에 움직이는 공은 먼저 움직인 공의 위치를 고려한다.
                 if(isRedMoveFirst(redPos, bluePos, move)) {
                     redMove = moveBall(redPos, IGNORE_POS, move);
-                    blueMove = moveBall(bluePos, new int[]{redMove.nr, redMove.nc}, move);
+                    blueMove = moveBall(bluePos, new int[]{redMove.row, redMove.col}, move);
                 } else {
                     blueMove = moveBall(bluePos, IGNORE_POS, move);
-                    redMove = moveBall(redPos, new int[]{blueMove.nr, blueMove.nc}, move);
+                    redMove = moveBall(redPos, new int[]{blueMove.row, blueMove.col}, move);
                 }
 
                 //빨간 공만 들어간 경우
@@ -111,13 +109,12 @@ public class Main {
                     System.out.println(1);
                     return;
                 }
-
                 //파란 공만 들어간 경우
                 if(blueMove.metHole) {
                     continue;
                 }
 
-                q.add(new int[]{redMove.nr, redMove.nc, blueMove.nr, blueMove.nc, tmpCnt + 1, move});
+                q.add(new int[]{redMove.row, redMove.col, blueMove.row, blueMove.col, tmpCnt + 1, move});
             }
         }
 
@@ -127,8 +124,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        boardRow = Integer.parseInt(st.nextToken());
-        boardCol = Integer.parseInt(st.nextToken());
+        int boardRow = Integer.parseInt(st.nextToken());
+        int boardCol = Integer.parseInt(st.nextToken());
+        int[] initRed = new int[2];
+        int[] initBlue = new int[2];
 
         board = new char[boardRow][boardCol];
 
@@ -147,6 +146,6 @@ public class Main {
                 }
             }
         }
-        solution();
+        solution(initRed, initBlue);
     }
 }
